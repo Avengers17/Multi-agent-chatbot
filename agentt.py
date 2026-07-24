@@ -4,10 +4,9 @@ import streamlit as st
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
 
-from langchain_huggingface import (
-    HuggingFaceEndpoint,
-    ChatHuggingFace
-)
+from langchain_huggingface import HuggingFaceEndpoint
+from langchain_core.language_models.llms import BaseLLM
+
 
 # =====================================================
 # HUGGING FACE TOKEN
@@ -19,11 +18,12 @@ os.environ["HUGGINGFACEHUB_API_TOKEN"] = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
 # LOAD MODEL
 # =====================================================
 
-endpoint = HuggingFaceEndpoint(
+llm = HuggingFaceEndpoint(
     repo_id="google/flan-t5-large",
     task="text2text-generation",
     max_new_tokens=512,
-    temperature=0.3
+    temperature=0.3,
+    huggingfacehub_api_token=st.secrets["HUGGINGFACEHUB_API_TOKEN"]
 )
 llm = ChatHuggingFace(llm=endpoint)
 
@@ -77,9 +77,9 @@ Task:
 Return ONLY executable Python code.
 """
 
-    response = llm.invoke(generator_prompt)
+    
 
-    code = response.content
+    code = llm.invoke(generator_prompt)
 
     return {
         "generated_code": code,
