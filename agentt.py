@@ -13,14 +13,14 @@ from langchain_huggingface import (
 # HUGGING FACE TOKEN
 # =====================================================
 
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
 
 # =====================================================
 # LOAD MODEL
 # =====================================================
 
 endpoint = HuggingFaceEndpoint(
-    repo_id="HuggingFaceH4/zephyr-7b-beta",
+    repo_id="mistralai/Mistral-7B-Instruct-v0.2",
     task="text-generation",
     max_new_tokens=512,
     temperature=0.3
