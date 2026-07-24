@@ -20,12 +20,13 @@ os.environ["HUGGINGFACEHUB_API_TOKEN"] = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
 # =====================================================
 
 endpoint = HuggingFaceEndpoint(
-    repo_id="mistralai/Mistral-7B-Instruct-v0.2",
-    task="text-generation",
+    repo_id="google/flan-t5-large",
+    task="text2text-generation",
     max_new_tokens=512,
     temperature=0.3
 )
 llm = ChatHuggingFace(llm=endpoint)
+
 
 
 # =====================================================
