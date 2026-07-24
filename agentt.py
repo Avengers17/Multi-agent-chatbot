@@ -13,7 +13,7 @@ from langchain_huggingface import (
 # HUGGING FACE TOKEN
 # =====================================================
 
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
+os.environ["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"] = st.secrets["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"]
 
 # =====================================================
 # LOAD MODEL
